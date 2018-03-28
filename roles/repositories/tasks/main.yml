@@ -1,0 +1,22 @@
+---
+- name: Copying Repository Configurations...
+  copy: 
+    src: "{{ item }}"
+    dest: /etc/yum.repos.d/ 
+  with_items: 
+      - docker-ce.repo
+      - epel.repo
+      - MariaDB.repo
+      - nodesource-el7.repo
+      - webtatic.repo
+
+- name: Copying Repository GPG Signing Keys...
+  copy: 
+    src: "{{ item }}"
+    dest: /etc/pki/rpm-gpg/
+  with_items: 
+      - keys/NODESOURCE-GPG-SIGNING-KEY-EL
+      - keys/RPM-GPG-KEY-EPEL-7
+      - keys/RPM-GPG-KEY-webtatic-el7
+
+

@@ -1,0 +1,38 @@
+---
+# - name: Installing '@Base' System...
+#   yum:
+#     name: "@Base"
+#     state: present
+# 
+# - name: Installing The '@Development Tools' Package...
+#   yum:
+#     name: "@Development Tools"
+#     state: present
+# 
+# - name: Installing git Command Line client
+#   yum:
+#     name: git
+#     state: latest
+ 
+- name: Installing Several Packages...
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "@Base"
+    - "@Development Tools"
+    - libpng-devel
+    - libjpeg-devel
+    - git
+    - tmux
+ 
+- name: Copying Runtime Configuration Files ( *.rc files )
+  copy: 
+    src: "{{ item }}"
+    dest: /root/
+  with_items: 
+    - .bashrc
+    - .screenrc
+    - .tmux.conf
+    - .vimrc
+

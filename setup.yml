@@ -1,0 +1,12 @@
+---
+- name: Setting Up the Environment...
+  hosts: all
+  remote_user: root 
+  roles:
+    - repositories
+    - packages
+    - mariadb
+    - nginx
+    - php7
+    - composer
+    - npm

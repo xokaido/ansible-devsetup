@@ -1,0 +1,8 @@
+---
+- name: Installing Nodejs and NPM...
+  yum:
+    name: nodejs
+    state: present
+
+
+

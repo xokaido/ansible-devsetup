@@ -1,0 +1,9 @@
+[webtatic]
+name=Webtatic Repository EL7 - $basearch
+#baseurl=https://repo.webtatic.com/yum/el7/$basearch/
+mirrorlist=https://mirror.webtatic.com/yum/el7/$basearch/mirrorlist
+failovermethod=priority
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-webtatic-el7
+

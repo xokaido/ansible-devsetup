@@ -1,0 +1,20 @@
+---
+- name: Installing PHP71 
+  yum: 
+    name: "{{ item }}"
+    state: present
+  with_items: 
+    - php71w-cli
+    - php71w-fpm
+    - php71w-pdo
+    - php71w-mcrypt
+    - php71w-mbstring
+    - php71w-gd
+    - php71w-mysqlnd
+    - php71w-xml
+
+- name: Enabling php-fpm Service and Starting it...
+  service:
+    name: php-fpm
+    enabled: yes
+    state: started

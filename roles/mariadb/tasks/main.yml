@@ -1,0 +1,18 @@
+- name: Installing MariaDB Server and the Client...
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - MariaDB-server
+    - MariaDB-client
+
+# - name: Copying .my.cnf to the $HOME Directory...
+#   copy: my.cnf
+#   dest: /root/.my.cnf
+#
+
+- name: Enabling MariaDB Service and Starting it...
+  service:
+    name: mariadb
+    enabled: yes
+    state: started

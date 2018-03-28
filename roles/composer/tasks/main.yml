@@ -1,0 +1,6 @@
+---
+- name: Installing Composer...
+  copy:
+    src: composer
+    dest: /usr/bin/
+    mode: 0755

@@ -1,0 +1,43 @@
+---
+- name: Making Sure The Admin Group Exists
+  group:
+    name: admin
+    state: present
+
+- name: Making Sure The Tester Group Exists
+  group:
+    name: tester
+    state: present
+
+- name: Creating SSH users for Admin Group
+  user:
+    name: "{{ item.name }}"
+    generate_ssh_key: yes
+    groups: "admin"
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+  with_items: "{{ admin_users }}"
+
+- name: Setting Authorized Keys for Admin Users
+  authorized_key:
+    user: "{{ item.name }}"
+    state: present
+    key: "{{ item.key }}"
+  with_items: "{{ admin_users }}"
+
+
+- name: Creating SSH users for Tester Group
+  user:
+    name: "{{ item.name }}" 
+    generate_ssh_key: yes
+    groups: "tester"
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+  with_items: "{{ tester_users }}"
+
+- name: Setting Authorized Keys for Tester Users
+  authorized_key:
+    user: "{{ item.name }}"
+    state: present
+    key: "{{ item.key }}"
+  with_items: "{{ tester_users }}"

@@ -1,0 +1,32 @@
+---
+- name: Installing nginx Web Server...
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - nginx
+
+# - name: Copying nginx Configurations...
+#   copy: 
+#     src: "{{ item }}"
+#     dest: /etc/nginx/conf.d/
+#   with_items:
+#     - ha
+
+- name: Enabling nginx Service and Starting it...
+  service:
+    name: nginx
+    enabled: yes
+    state: started
+
+- name: Creating Default /web/ Directory...
+  file:
+    path: /web
+    state: directory
+    mode: 0755
+
+- name: Copying Default Website Configuration File...
+  template:
+    src: website.conf.j2
+    dest: /etc/nginx/conf.d/website.conf
+    
