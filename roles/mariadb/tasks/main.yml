@@ -6,13 +6,15 @@
     - MariaDB-server
     - MariaDB-client
 
-# - name: Copying .my.cnf to the $HOME Directory...
-#   copy: my.cnf
-#   dest: /root/.my.cnf
-#
-
 - name: Enabling MariaDB Service and Starting it...
   service:
     name: mariadb
     enabled: yes
     state: started
+ 
+# - name: Copying .my.cnf to the $HOME Directory...
+#   template: 
+#     src: my.cnf.j2
+#     dest: /root/.my.cnf
+#
+
